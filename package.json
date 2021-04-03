@@ -1,0 +1,27 @@
+{
+  "name": "esbuild-demo",
+  "description": "Just me foolin' with esbuild",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Curtis Dulmage <curtdulmage@gmail.com>",
+  "repository": "https://github.com/beefchimi/esbuild-demo",
+  "keywords": [
+    "esbuild",
+    "react",
+    "demo"
+  ],
+  "main": "package.json",
+  "scripts": {
+    "lint": "echo 'lint'",
+    "type-check": "echo 'type-check'",
+    "test": "echo 'test'",
+    "clean": "rm -rf dist",
+    "build": "node ./scripts/build.js",
+    "build:prod": "NODE_ENV=production node ./scripts/build.js"
+  },
+  "dependencies": {
+    "esbuild": "^0.11.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
