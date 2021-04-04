@@ -2,23 +2,18 @@ const envProduction = process.env.NODE_ENV === "production";
 
 require("esbuild")
   .build({
-    entryPoints: ["app.jsx"],
-    format: "esm",
     bundle: true,
+    format: "esm",
     minify: envProduction,
     sourcemap: !envProduction,
-    target: ["chrome58", "firefox57", "safari11", "edge16"],
+    loader: {
+      ".png": "dataurl",
+      ".svg": "text",
+    },
+    // target: ["chrome58", "firefox57", "safari11", "edge16"],
+    // target: ["es6"],
+    // entryPoints: ["app.jsx"],
+    entryPoints: ["app-alt.js"],
     outdir: "dist",
   })
   .catch(() => process.exit(1));
-
-/*
-require("fs").writeFileSync("in.ts", "let x: number = 1");
-
-require("esbuild").buildSync({
-  entryPoints: ["in.ts"],
-  outfile: "out.js",
-});
-
-require("fs").readFileSync("out.js", "utf8");
-*/
