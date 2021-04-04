@@ -1,5 +1,7 @@
-# Build
 .cache/
+.DS_Store
+
+# Build
 dist/
 
 # dotenv environment variables file
