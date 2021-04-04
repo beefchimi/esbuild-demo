@@ -15,11 +15,12 @@
     "lint": "echo 'lint'",
     "type-check": "echo 'type-check'",
     "test": "echo 'test'",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf serve/dist",
     "build": "yarn clean && node ./scripts/build.js",
     "build:prod": "NODE_ENV=production yarn build"
   },
   "dependencies": {
+    "change-case": "^4.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
