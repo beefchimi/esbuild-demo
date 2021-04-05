@@ -1,18 +1,17 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
-const APP_ROOT_ID = "AppRoot";
+import pngImage from "./assets/image.png";
+import svgLogo from "./assets/logo.svg";
 
-const Greet = () => <h1>Hello, world!</h1>;
-// console.log(ReactDOM.Server.renderToString(<Greet />));
+import { Greet } from "./components";
 
-function App({ children }) {
-  return <div className="App">{children}</div>;
+export function App({ children }) {
+  return (
+    <div className="App">
+      {svgLogo}
+      <Greet greeting="Salut" />
+      <img src={pngImage} alt="Image" />
+      {children}
+    </div>
+  );
 }
-
-ReactDOM.render(
-  <App>
-    <Greet />
-  </App>,
-  document.getElementById(APP_ROOT_ID)
-);

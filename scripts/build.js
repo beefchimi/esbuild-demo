@@ -9,24 +9,31 @@ function handleOnRebuild(error, result) {
 }
 
 require("esbuild")
-  .build({
-    bundle: true,
-    splitting: true,
-    format: "esm",
-    minify: envProduction,
-    sourcemap: !envProduction,
-    loader: {
-      ".png": "dataurl",
-      ".svg": "text",
+  // .build({
+  .serve(
+    {
+      servedir: "serve",
     },
-    target: ["es2018"],
-    // entryPoints: ["src/app.jsx"],
-    entryPoints: ["src/sections/home.js", "src/sections/about.js"],
-    outdir: "serve/dist",
-    watch: {
-      onRebuild: handleOnRebuild,
-    },
-  })
+    {
+      bundle: true,
+      splitting: true,
+      format: "esm",
+      minify: envProduction,
+      sourcemap: !envProduction,
+      loader: {
+        ".png": "file",
+        ".svg": "text",
+      },
+      target: ["es2018"],
+      entryPoints: ["src/index.jsx"],
+      assetNames: "assets/[name]-[hash]",
+      // entryPoints: ["src/sections/home.js", "src/sections/about.js"],
+      outdir: "serve/dist",
+      // watch: {
+      //   onRebuild: handleOnRebuild,
+      // },
+    }
+  )
   .then((result) => {
     console.log("then > result:", result);
     // result.stop();
@@ -35,20 +42,8 @@ require("esbuild")
 
 /*
 require("esbuild")
-  .serve(
-    {
-      servedir: "serve",
-    },
-    {
-      entryPoints: ["src/app.jsx"],
-      // entryPoints: ["src/app-alt.js"],
-      outdir: "serve/dist",
-      bundle: true,
-    }
-  )
+  .serve({servedir: "serve"}, {})
   .then((server) => {
-    // Call "stop" on the web server when you're done
-    console.log("server", server);
-    // server.stop();
+    server.stop();
   });
 */
