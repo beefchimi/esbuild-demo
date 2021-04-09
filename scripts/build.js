@@ -9,31 +9,27 @@ function handleOnRebuild(error, result) {
 }
 
 require("esbuild")
-  // .build({
-  .serve(
-    {
-      servedir: "serve",
+  // .serve({servedir: "serve"}, {
+  .build({
+    bundle: true,
+    splitting: true,
+    format: "esm",
+    minify: envProduction,
+    sourcemap: !envProduction,
+    loader: {
+      ".png": "file",
+      ".svg": "text",
     },
-    {
-      bundle: true,
-      splitting: true,
-      format: "esm",
-      minify: envProduction,
-      sourcemap: !envProduction,
-      loader: {
-        ".png": "file",
-        ".svg": "text",
-      },
-      target: ["es2018"],
-      entryPoints: ["src/index.jsx"],
-      assetNames: "assets/[name]-[hash]",
-      // entryPoints: ["src/sections/home.js", "src/sections/about.js"],
-      outdir: "serve/dist",
-      // watch: {
-      //   onRebuild: handleOnRebuild,
-      // },
-    }
-  )
+    target: ["es2018"],
+    entryPoints: ["src/index.jsx"],
+    // entryPoints: ["src/sections/home.js", "src/sections/about.js"],
+    assetNames: "assets/[name]-[hash]",
+    // chunkNames: "vendor/[name]-[hash]",
+    outdir: "serve/dist",
+    // watch: {
+    //   onRebuild: handleOnRebuild,
+    // },
+  })
   .then((result) => {
     console.log("then > result:", result);
     // result.stop();
